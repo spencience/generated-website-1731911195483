@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                        <title>Home</title>
+                        <script src="https://cdn.tailwindcss.com"></script>
+                    </head>
+                    <body class="bg-white">
+                        <main class="container mx-auto p-4 pt-6 md:p-6 lg:p-12 xl:p-24">
+
+  <section class="mb-12">
+    <h1 class="text-3xl font-bold mb-2">American Fork Canyon, Utah</h1>
+    <p class="text-lg mb-4">Located in the Wasatch Mountains, American Fork Canyon is a stunning natural wonder that offers breathtaking scenery and plenty of opportunities for outdoor recreation.</p>
+    <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded flex items-center gap-2" onclick="toggleInfo()">
+      <span>Learn More</span>
+      <svg id="chevron-learn" class="w-4 h-4 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  </section>
+
+  <section id="info" class="hidden mt-4 p-4 bg-gray-100 rounded shadow-inner transition-all duration-300 opacity-0 transform -translate-y-2">
+    <div class="prose">
+      <h2 class="text-lg font-semibold mb-2">Recreational Activities</h2>
+      <p class="mb-4">American Fork Canyon offers a variety of recreational activities, including hiking, camping, fishing, and horseback riding.</p>
+      <ul>
+        <li><a class="text-blue-600" href="#">Hiking Trails</a></li>
+        <li><a class="text-blue-600" href="#">Camping Sites</a></li>
+        <li><a class="text-blue-600" href="#">Fishing Spots</a></li>
+        <li><a class="text-blue-600" href="#">Horseback Riding Trails</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold mb-2">Plan Your Visit</h2>
+    <p class="text-lg mb-4">Before visiting American Fork Canyon, be sure to check the current weather and road conditions.</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onclick="updateWeather()">Get Current Weather</button>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="updateRoadConditions()">Get Road Conditions</button>
+    </div>
+  </section>
+
+  <script>
+    let weatherCount = 0;
+    let roadCount = 0;
+    const info = document.getElementById('info');
+    const chevronLearn = document.getElementById('chevron-learn');
+    const weatherButton = document.querySelector('[onclick="updateWeather()"]');
+    const roadButton = document.querySelector('[onclick="updateRoadConditions()"]');
+
+    function toggleInfo() {
+      const isHidden = info.classList.contains('hidden');
+      
+      if (isHidden) {
+        info.classList.remove('hidden');
+        setTimeout(() => {
+          info.classList.remove('opacity-0', '-translate-y-2');
+          chevronLearn.style.transform = 'rotate(180deg)';
+        }, 10);
+      } else {
+        info.classList.add('opacity-0', '-translate-y-2');
+        chevronLearn.style.transform = 'rotate(0)';
+        setTimeout(() => {
+          info.classList.add('hidden');
+        }, 300);
+      }
+    }
+
+    function updateWeather() {
+      weatherCount++;
+      weatherButton.textContent = `Updated Weather (${weatherCount})`;
+      weatherButton.classList.add('scale-125');
+      setTimeout(() => weatherButton.classList.remove('scale-125'), 200);
+    }
+
+    function updateRoadConditions() {
+      roadCount++;
+      roadButton.textContent = `Updated Road Conditions (${roadCount})`;
+      roadButton.classList.add('scale-125');
+      setTimeout(() => roadButton.classList.remove('scale-125'), 200);
+    }
+  </script>
+</main>
+                    </body>
+                    </html>
